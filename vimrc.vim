@@ -131,3 +131,21 @@ command! Ecpp call EditCppFile()
 command! Ehead call EditHeaderFile()
 command! -nargs=* Gr call GrepCurWord(<f-args>)
 set noic
+
+"format
+function! CppFormat()
+    let file_path = expand('%:p')
+    execute "silent !cppstyle -i " . file_path
+    execute ":e"
+    execute ":se filetype=cpp"
+endfunction
+autocmd! BufWritePost *.cpp call CppFormat()
+autocmd! BufWritePost *.h call CppFormat()
+
+function! ProtoFormat()
+    let file_path = expand('%:p')
+    execute "silent !protostyle -i " . file_path
+    execute ":e"
+    execute ":se filetype=proto"
+endfunction
+autocmd! BufWritePost *.proto call ProtoFormat()
