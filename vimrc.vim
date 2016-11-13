@@ -73,10 +73,10 @@ map <F11> :nohlsearch<CR>
 map <F12> :w<CR>
 
 let mapleader = ","
-map <silent> <leader>s :source ~/.vimrc<cr>
-map <silent> <leader>e :e ~/.vimrc<cr>
+map <silent> <leader>s :source $MYVIMRC<cr>
+map <silent> <leader>e :e $MYVIMRC<cr>
 "map <silent> <C-X> :q!<cr>
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 
 "taglist
 nmap <silent> <leader>tl :TlistToggle<cr> "for taglist
@@ -149,3 +149,4 @@ function! ProtoFormat()
     execute ":se filetype=proto"
 endfunction
 autocmd! BufWritePost *.proto call ProtoFormat()
+inoremap jk <esc>
