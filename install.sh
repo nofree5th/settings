@@ -14,7 +14,10 @@ else
 fi
 
 cd ~ && {
+    ln -s $OPTIONS $CUR/base.sh .base.sh
     ln -s $OPTIONS $CUR/bashrc.sh .
+    ln -s $OPTIONS $CUR/bazelrc.sh .bazelrc.sh
+
     ln -s $OPTIONS $CUR/vimrc.vim .vimrc
 }
 
