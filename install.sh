@@ -7,12 +7,18 @@ CUR="$PWD"
 
 sh $CUR/git_conf.sh
 
+if [ x"$1" = xforce ];then
+    OPTIONS="-f"
+else
+    OPTIONS=""
+fi
+
 cd ~ && {
-    ln -s $CUR/bashrc.sh .
-    ln -s $CUR/vimrc.vim .vimrc
+    ln -s $OPTIONS $CUR/bashrc.sh .
+    ln -s $OPTIONS $CUR/vimrc.vim .vimrc
 }
 
 mkdir -p ~/bin && cd ~/bin && {
-    ln -s $CUR/cppfmt.sh cppfmt
-    ln -s $CUR/protofmt.sh protofmt
+    ln -s $OPTIONS $CUR/cppfmt.sh cppfmt
+    ln -s $OPTIONS $CUR/protofmt.sh protofmt
 }
