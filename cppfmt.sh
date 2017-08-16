@@ -1,6 +1,6 @@
 #/bin/sh
 
-read -r -d '' STYLE << EOF
+STYLE=$(cat << EOF
 {
     Language: Cpp,
     BasedOnStyle: Google,
@@ -42,6 +42,7 @@ read -r -d '' STYLE << EOF
     SortIncludes: true,
 }
 EOF
+)
 
 clang-format -style="$STYLE" "$@"
 

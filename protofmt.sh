@@ -1,6 +1,6 @@
 #/bin/sh
-
-read -r -d '' STYLE << EOF
+#
+STYLE=$(cat << EOF
 {
     Language: Proto,
     BasedOnStyle: Google,
@@ -29,6 +29,7 @@ read -r -d '' STYLE << EOF
     BreakBeforeTernaryOperators: true,
 }
 EOF
+)
 
 clang-format -style="$STYLE" "$@"
 
