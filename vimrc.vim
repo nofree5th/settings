@@ -47,8 +47,8 @@ set shiftwidth=4
 set listchars=tab:>-,trail:-
 set list
 
-set autoindent
-set cindent
+set autoindent shiftwidth=4
+set cindent shiftwidth=4
 
 set tags=./tags,./TAGS,~/.tags,~/TAGS
 
@@ -159,4 +159,16 @@ function! GoFormat()
     execute ":se filetype=go"
 endfunction
 autocmd! BufWritePost *.go call GoFormat()
+
+"format BUILD
+function! BuildFormat()
+    let file_path = expand('%:p')
+    execute "silent !buildifier -mode=fix " . file_path
+    execute ":e"
+    execute ":se filetype=go"
+endfunction
+autocmd! BufWritePost BUILD call BuildFormat()
+
 inoremap jk <esc>
+
+au BufRead,BufNewFile BUILD set filetype=python

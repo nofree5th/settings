@@ -81,7 +81,7 @@ function getNumberOfDirectory()
 function ChangeToDirectoryLike()
 {
     local key="$1"
-    local dirs="$(find ~/src -maxdepth 2 -mindepth 1 -type d)"
+    local dirs="$(find ~/src -maxdepth 3 -mindepth 1 -type d)"
     dirs="$(echo "$dirs"|egrep -v '\.')"
     local errmsg=""
     local dir=""
