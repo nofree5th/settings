@@ -170,7 +170,7 @@ endfunction
 autocmd! BufWritePost BUILD call BuildFormat()
 
 "configure bazel env
-set path+=$HOME/QQMail
+set path+=$HOME/workspace
 set makeprg=$HOME/.run_bazel.sh
 
 inoremap jk <esc>
