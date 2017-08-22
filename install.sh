@@ -19,6 +19,7 @@ cd ~ && {
     ln -s $OPTIONS $CUR/bazelrc.sh .bazelrc.sh
 
     ln -s $OPTIONS $CUR/vimrc.vim .vimrc
+    ln -s $OPTIONS $CUR/run_bazel.sh .run_bazel.sh
 }
 
 mkdir -p ~/bin && cd ~/bin && {

@@ -146,12 +146,21 @@ function qu()
 }
 ## -----------------end utils ------------------------------
 
+## == bazel helpers ===
+function bb()
+{
+    if [ $# -eq 0 ];then
+        bazel build :all
+    fi
+    bazel build "$@"
+}
+
+
 # jump dir
 alias cds='cd ~/src'
 alias cdr='cd ~/src/zerone'
 
 # tools
-alias bb='bazel build'
 alias cb=ChangeToBinaryDirectory
 alias s=ChangeToSourceDirectory
 alias c=ChangeToDirectoryLike

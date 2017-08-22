@@ -169,6 +169,10 @@ function! BuildFormat()
 endfunction
 autocmd! BufWritePost BUILD call BuildFormat()
 
+"configure bazel env
+set path+=$HOME/QQMail
+set makeprg=$HOME/.run_bazel.sh
+
 inoremap jk <esc>
 
 au BufRead,BufNewFile BUILD set filetype=python
