@@ -168,6 +168,7 @@ function! BuildFormat()
     execute ":se filetype=go"
 endfunction
 autocmd! BufWritePost BUILD call BuildFormat()
+autocmd! BufWritePost WORKSPACE call BuildFormat()
 
 "configure bazel env
 set path+=$HOME/workspace
@@ -176,3 +177,18 @@ set makeprg=$HOME/.run_bazel.sh
 inoremap jk <esc>
 
 au BufRead,BufNewFile BUILD set filetype=python
+
+" vim-plug
+" see more: https://github.com/junegunn/vim-plug
+call plug#begin()
+
+" for bazel
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+call plug#end()
+
+function! Make()
+    execute ":Bazel build :all"
+endfunction
+command! Ma call Make()
+nnoremap ma :Bazel build :all<cr>
