@@ -5,12 +5,34 @@ source ~/.base.sh
 ## -------------------- utils ------------------------------
 base_g_last_src=""
 base_g_last_bin=""
+
+g_result=""
+function FindWorkspaceRoot()
+{
+    local cur_path="$PWD"
+    while true;
+    do
+        if [ -f WORKSPACE ];then
+            g_result="$PWD"
+            break
+        fi
+        if [ "$cur_path" = "/" ];then
+            g_result="$HOME/src/zerone"
+            break;
+        fi
+        cd ..
+    done
+    cd "$cur_path"
+}
+
 ## Desc : change to the sources relative bazel-bin directory
 ## Usage: ChangeToBinaryDirectory
 function ChangeToBinaryDirectory()
 {
+    FindWorkspaceRoot
+    local workspace_root="$g_result"
     local cur_path="$PWD"
-    local bin_path="$HOME/src/zerone/bazel-bin/${cur_path/#*zerone\//}"
+    local bin_path="$workspace_root/bazel-bin/${cur_path/#${workspace_root}/}"
     if [ -d "$bin_path" ];then
         base_g_last_src="$cur_path"
         cd "$bin_path"
@@ -24,8 +46,10 @@ function ChangeToBinaryDirectory()
 ## Usage: ChangeToSourceDirectory
 function ChangeToSourceDirectory()
 {
+    FindWorkspaceRoot
+    local workspace_root="$g_result"
     local cur_path="$PWD"
-    local src_path="${HOME}/zerone/${cur_path/#*zerone\/bazel-bin\//}"
+    local src_path="$workspace_root/${cur_path/#${workspace_root}\/bazel-bin\//}"
     if [ -d "$src_path" ];then
         base_g_last_bin="$cur_path"
         cd "$src_path"
