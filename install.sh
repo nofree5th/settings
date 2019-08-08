@@ -13,6 +13,13 @@ else
     OPTIONS=""
 fi
 
+# Install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install vim plug manager
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 cd ~ && {
     ln -s $OPTIONS $CUR/base.sh .base.sh
     ln -s $OPTIONS $CUR/bashrc.sh .
